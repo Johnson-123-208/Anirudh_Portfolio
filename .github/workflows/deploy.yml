@@ -1,0 +1,35 @@
+name: Deploy All Sites
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy Website 1
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./Website1
+          publish_branch: gh-pages
+          destination_dir: Website1
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy Website 2
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./Website2
+          publish_branch: gh-pages
+          destination_dir: Website2
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy Website 3
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./Website3
+          publish_branch: gh-pages
+          destination_dir: Website3
+          github_token: ${{ secrets.GITHUB_TOKEN }}
